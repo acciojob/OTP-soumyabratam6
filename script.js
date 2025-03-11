@@ -4,12 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
     otpInputs.forEach((input, index) => {
         input.addEventListener("input", (e) => {
             const value = e.target.value;
-            console.log('Input event triggered for index:', index, 'with value:', value);
+            console.log('Input event triggered for index:', index, 'with value:', value, 'and length:', value.length);
+            
             if (value.length === 1) {
-                e.target.value = value.charAt(0); 
+                e.target.value = value.charAt(0);
+                console.log('Condition satisfied for index:', index);
+                
                 if (index < otpInputs.length - 1) {
                     otpInputs[index + 1].focus();
                     console.log('Input focus set to index:', index + 1);
+                    console.log('Currently focused element:', document.activeElement);
                 }
             }
         });
