@@ -4,17 +4,18 @@ document.addEventListener("DOMContentLoaded", () => {
     otpInputs.forEach((input, index) => {
         input.addEventListener("input", (e) => {
             const value = e.target.value;
+
             if (value.length === 1) {
                 e.target.value = value.charAt(0); // Ensure only one digit is entered
                 if (index < otpInputs.length - 1) {
-                    otpInputs[index + 1].focus();
+                    setTimeout(() => otpInputs[index + 1].focus(), 10);
                 }
             }
         });
 
         input.addEventListener("keydown", (e) => {
             if (e.key === "Backspace" && !e.target.value && index > 0) {
-                otpInputs[index - 1].focus();
+                setTimeout(() => otpInputs[index - 1].focus(), 10);
             }
         });
 
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 field.value = pasteData[idx] || "";
             });
             const nextIndex = pasteData.length < otpInputs.length ? pasteData.length : otpInputs.length - 1;
-            otpInputs[nextIndex].focus();
+            setTimeout(() => otpInputs[nextIndex].focus(), 10);
         });
     });
 });
