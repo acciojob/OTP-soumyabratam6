@@ -4,10 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
     otpInputs.forEach((input, index) => {
         input.addEventListener("input", (e) => {
             const value = e.target.value;
-            if (value.length === 1 && index < otpInputs.length - 1) {
-                otpInputs[index + 1].focus();
-            } else if (value.length > 1) {
+            if (value.length === 1) {
                 e.target.value = value.charAt(0); // Ensure only one digit is entered
+                if (index < otpInputs.length - 1) {
+                    otpInputs[index + 1].focus();
+                }
             }
         });
 
@@ -23,7 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
             otpInputs.forEach((field, idx) => {
                 field.value = pasteData[idx] || "";
             });
-            otpInputs[pasteData.length < otpInputs.length ? pasteData.length : otpInputs.length - 1].focus();
+            const nextIndex = pasteData.length < otpInputs.length ? pasteData.length : otpInputs.length - 1;
+            otpInputs[nextIndex].focus();
         });
     });
 });
